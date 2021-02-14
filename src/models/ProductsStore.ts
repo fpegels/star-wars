@@ -1,6 +1,5 @@
 import { cast, flow, Instance, types } from "mobx-state-tree";
 import { api } from "../api";
-import { planets } from "../api/api";
 import { Planet } from "./Planet";
 
 export const PlanetsStore = types
