@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:mock": "env-cmd -f .env.mock yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -57,6 +58,7 @@
     "@storybook/node-logger": "^6.1.17",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.17",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "env-cmd": "^10.1.0"
   }
 }
