@@ -1,6 +1,6 @@
 import { cast, flow, Instance, types } from "mobx-state-tree";
 import { api } from "../api";
-import { Planet } from "./Planet";
+import { PlanetType, Planet } from "./Planet";
 
 export const PlanetsStore = types
   .model("PlanetsStore", {
@@ -14,7 +14,7 @@ export const PlanetsStore = types
     },
   }))
   .actions((self) => ({
-    addPlanet(planet: Planet) {
+    addPlanet(planet: PlanetType) {
       self.planets.push(planet);
     },
   }))
@@ -45,5 +45,6 @@ export const PlanetsStore = types
     }),
   }));
 
-export type PlanetsStore = Instance<typeof PlanetsStore>;
+//@ts-nocheck
+export type PlanetsStoreType = Instance<typeof PlanetsStore>;
 export const planetsStore = PlanetsStore.create();
