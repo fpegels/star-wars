@@ -2,7 +2,7 @@ import { Spinner } from "../../DesignSystem/lib/_icons";
 import { colors } from "../../DesignSystem/lib/_theme";
 
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { api } from "../../api";
 
 type PlanetProps = {
@@ -44,27 +44,19 @@ export function Resident({ residentId }: PlanetProps) {
   }, [residentId]);
 
   return (
-    <Grid>
+    <Fragment>
       {isLoading ? (
         <SpinnerContainer>
           <Spinner />
         </SpinnerContainer>
       ) : (
-        <Container>
+        <Fragment>
           <div>{resident.name}</div>
-        </Container>
+        </Fragment>
       )}
-    </Grid>
+    </Fragment>
   );
 }
-
-const Grid = styled.div({
-  display: "grid",
-  gridTemplateColumns: `auto 940px auto`,
-  backgroundColor: colors.greyMain,
-  paddingTop: "2.4rem",
-  minHeight: "100vh",
-});
 
 const SpinnerContainer = styled.div({
   color: colors.greyMain,
@@ -73,10 +65,4 @@ const SpinnerContainer = styled.div({
   transform: "translate(50%, 50%)",
   position: "absolute",
   fontSize: "6.4rem",
-});
-
-const Container = styled.div({
-  gridColumnStart: 2,
-  gridColumnEnd: 3,
-  cursor: "default",
 });

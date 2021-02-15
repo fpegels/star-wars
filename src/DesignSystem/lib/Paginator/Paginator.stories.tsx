@@ -4,7 +4,7 @@ import { number, withKnobs } from "@storybook/addon-knobs";
 import { Paginator } from ".";
 
 const PaginatorStories = {
-  title: "Design System/Paginator",
+  title: "Navigation/Paginator",
   component: Paginator,
   decorators: [withKnobs],
 };

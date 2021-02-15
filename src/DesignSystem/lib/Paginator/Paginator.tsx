@@ -115,7 +115,7 @@ type PageButtonProps = {
 };
 
 const PageButton = styled.button<PageButtonProps>((props) => {
-  const selectedColor = colors.black;
+  const selectedColor = colors.blueDark;
   return {
     width: "2.4rem",
     height: "2.4rem",

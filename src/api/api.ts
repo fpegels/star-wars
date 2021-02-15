@@ -13,8 +13,7 @@ export { Residents };
 
 export function fetchMockConfig(config?: Omit<MockOptions, "method">) {
   return {
-    delay: 500,
-    // overwriteRoutes: true,
+    delay: 1000,
     ...(config != null ? config : {}),
   };
 }

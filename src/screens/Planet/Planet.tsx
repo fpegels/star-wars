@@ -1,10 +1,11 @@
 import { Spinner } from "../../DesignSystem/lib/_icons";
 import { Link } from "react-router-dom";
-import { colors } from "../../DesignSystem/lib/_theme";
+import { colors, mediaQuery } from "../../DesignSystem/lib/_theme";
 
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { api } from "../../api";
+import { Breadcrumb } from "../../DesignSystem/lib";
 
 type PlanetProps = {
   planetId: string;
@@ -49,14 +50,25 @@ export function Planet({ planetId }: PlanetProps) {
         </SpinnerContainer>
       ) : (
         <Container>
-          <div>{planet.name}</div>
-          {planet.residents.map((resident) => (
-            <div key={resident}>
-              <Link to={`/resident/${resident.split("/").slice(-2, -1)}`}>
-                {resident}
-              </Link>
-            </div>
-          ))}
+          {console.log("plan", planet)}
+          <div>
+            <Breadcrumb
+              links={[{ id: "1", name: "Planets", url: "/planets/" }]}
+            />
+            <div>{planet.name}</div>
+          </div>
+
+          <div style={{ overflow: "auto" }}>
+            {planet.residents.map((resident, index) => (
+              <div key={resident}>
+                <StyledLink
+                  to={`/resident/${resident.split("/").slice(-2, -1)}`}
+                >
+                  Resident {index}
+                </StyledLink>
+              </div>
+            ))}
+          </div>
         </Container>
       )}
     </Grid>
@@ -65,14 +77,42 @@ export function Planet({ planetId }: PlanetProps) {
 
 const Grid = styled.div({
   display: "grid",
-  gridTemplateColumns: `auto 940px auto`,
-  backgroundColor: colors.greyMain,
-  paddingTop: "2.4rem",
+  gridTemplateColumns: `2rem auto 2rem`,
+  backgroundColor: colors.blueDark,
   minHeight: "100vh",
+  justifyItems: "center",
+
+  [mediaQuery.desktop]: {
+    display: "grid",
+    gridTemplateColumns: `auto 940px auto`,
+  },
+});
+
+const Container = styled.div({
+  padding: "2rem 0.4rem",
+  display: "grid",
+  alignSelf: "center",
+  justifyItems: "center",
+  gridGap: "2rem",
+  backgroundColor: colors.greyMain,
+  gridColumnStart: 2,
+  gridColumnEnd: 3,
+  width: "100%",
+
+  [mediaQuery.desktop]: {
+    height: "80vh",
+    width: "80vh",
+    backgroundColor: "#bbb",
+    borderRadius: "50%",
+    padding: "4rem",
+    display: "flex",
+    flexFlow: "column",
+    alignItems: "center",
+  },
 });
 
 const SpinnerContainer = styled.div({
-  color: colors.greyMain,
+  color: colors.white,
   right: "50%",
   bottom: "50%",
   transform: "translate(50%, 50%)",
@@ -80,8 +120,23 @@ const SpinnerContainer = styled.div({
   fontSize: "6.4rem",
 });
 
-const Container = styled.div({
-  gridColumnStart: 2,
-  gridColumnEnd: 3,
-  cursor: "default",
+const StyledLink = styled(Link)({
+  color: colors.greyDark,
+  backgroundColor: colors.white,
+  marginBottom: "0.4rem",
+  padding: "0.4rem",
+  textAlign: "center",
+  borderRadius: "0.4rem",
+  boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.28)",
+  display: "grid",
+  textDecoration: "none",
+
+  [mediaQuery.desktop]: {
+    minWidth: "10rem",
+  },
+
+  "&:hover": {
+    fontWeight: "bold",
+    color: colors.black,
+  },
 });

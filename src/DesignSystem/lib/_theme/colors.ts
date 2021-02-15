@@ -4,4 +4,5 @@ export const colors = {
   greyDark: "hsl(0, 1%, 16%)",
   greyMedium: "hsl(0, 0%, 45%)",
   greyMain: "hsl(0, 0%, 72%)",
+  blueDark: "hsl(220, 13%, 18%)",
 } as const;

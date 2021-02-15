@@ -7,6 +7,7 @@ import { Planets, Planet, Resident } from "./screens";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   const { fetchPlanets } = usePlanetsStore();
 
   useEffect(() => {
@@ -14,27 +15,22 @@ function App() {
       () => setIsLoading(false),
       (error) => {
         setIsLoading(false);
+        setError(error);
         console.error(error);
       }
     );
   }, [fetchPlanets]);
+
+  if (error !== "") {
+    return <div>Ups! There was an Error({error})</div>;
+  }
 
   return (
     <div className="App">
       {isLoading ? (
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <p>We are loading all planets...</p>
         </header>
       ) : (
         <Switch>
