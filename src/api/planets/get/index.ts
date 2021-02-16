@@ -6,7 +6,7 @@ import fetchMock from "fetch-mock";
 export default async function get(planetID: string) {
   if (process.env.REACT_APP_MOCK != null) {
     fetchMock.get(
-      /\/api\/planets\/[\d\w]+\/$/,
+      /\/api\/planets\/[0-9]+\/$/,
       require("./fixture.json"),
       fetchMockConfig()
     );

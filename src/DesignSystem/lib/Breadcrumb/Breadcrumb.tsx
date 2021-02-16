@@ -35,6 +35,7 @@ const Container = styled.ol({
   padding: 0,
   margin: 0,
   cursor: "default",
+  color: colors.white,
 });
 
 const Item = styled.li({
@@ -42,13 +43,12 @@ const Item = styled.li({
 });
 
 const StyledLink = styled(Link)({
-  color: colors.greyMedium,
+  color: colors.white,
   textDecoration: "none",
 });
 
 const Separator = styled.span({
   display: "inline",
   fontSize: "1rem",
-  color: colors.greyMedium,
   margin: "auto 0.8rem",
 });

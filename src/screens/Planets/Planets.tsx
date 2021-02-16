@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { usePlanetsStore } from "../../hooks/useFetchPlanets";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
-import { Breadcrumb, Paginator } from "../../DesignSystem/lib";
+import { Paginator } from "../../DesignSystem/lib";
 import { PlanetType } from "../../models/Planet";
 import { colors, mediaQuery } from "../../DesignSystem/lib/_theme";
 
@@ -39,15 +39,14 @@ export const Planets = observer(function Planets() {
     <Grid>
       <Container>
         <div>
-          <Breadcrumb
-            links={[{ id: "1", name: "Planets", url: "/planets/" }]}
-          />
+          <h1 style={{ marginTop: 0, color: colors.blueDark }}>Planets</h1>
           <input
             onChange={onChangeHandler}
             value={filterStr}
             placeholder="Find a Planet..."
           ></input>
         </div>
+
         <div>
           {_planets?.map((planet) => (
             <div key={planet.url}>
@@ -97,7 +96,7 @@ const Container = styled.div({
   display: "grid",
   alignSelf: "center",
   justifyItems: "center",
-  gridGap: "2rem",
+  gridGap: "1.2rem",
   backgroundColor: colors.greyMain,
   gridColumnStart: 2,
   gridColumnEnd: 3,
@@ -130,10 +129,7 @@ const StyledLink = styled(Link)({
   boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.28)",
   display: "grid",
   textDecoration: "none",
-
-  [mediaQuery.desktop]: {
-    minWidth: "10rem",
-  },
+  minWidth: "10rem",
 
   "&:hover": {
     fontWeight: "bold",

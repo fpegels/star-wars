@@ -21,8 +21,8 @@ function App() {
     );
   }, [fetchPlanets]);
 
-  if (error !== "") {
-    return <div>Ups! There was an Error({error})</div>;
+  if (error !== "" && process.env.REACT_APP_MOCK == null) {
+    return <div>Ups! There was an Error. Try reloading the app.</div>;
   }
 
   return (

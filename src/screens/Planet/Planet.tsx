@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { colors, mediaQuery } from "../../DesignSystem/lib/_theme";
 
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { api } from "../../api";
 import { Breadcrumb } from "../../DesignSystem/lib";
 
@@ -49,27 +49,43 @@ export function Planet({ planetId }: PlanetProps) {
           <Spinner />
         </SpinnerContainer>
       ) : (
-        <Container>
-          {console.log("plan", planet)}
-          <div>
+        <Fragment>
+          <div style={{ position: "absolute" }}>
             <Breadcrumb
               links={[{ id: "1", name: "Planets", url: "/planets/" }]}
             />
-            <div>{planet.name}</div>
           </div>
 
-          <div style={{ overflow: "auto" }}>
-            {planet.residents.map((resident, index) => (
-              <div key={resident}>
-                <StyledLink
-                  to={`/resident/${resident.split("/").slice(-2, -1)}`}
-                >
-                  Resident {index}
-                </StyledLink>
-              </div>
-            ))}
-          </div>
-        </Container>
+          <Container>
+            <div style={{ fontWeight: "bold" }}>
+              <small>Planet</small>
+              <div>{planet.name}</div>
+            </div>
+            <div>
+              <small>Terrain Type</small>
+              <div>{planet.terrain}</div>
+            </div>
+            <div>
+              <small>Climate Type</small>
+              <div>{planet.climate}</div>
+            </div>
+            <div>
+              <small>Gravity</small>
+              <div>{planet.gravity}</div>
+            </div>
+
+            <div style={{ overflow: "auto" }}>
+              <small>List of residents</small>
+              {planet.residents.map((resident, index) => (
+                <div key={resident}>
+                  <Link to={`/resident/${resident.split("/").slice(-2, -1)}`}>
+                    Resident {index}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </Fragment>
       )}
     </Grid>
   );
@@ -118,25 +134,4 @@ const SpinnerContainer = styled.div({
   transform: "translate(50%, 50%)",
   position: "absolute",
   fontSize: "6.4rem",
-});
-
-const StyledLink = styled(Link)({
-  color: colors.greyDark,
-  backgroundColor: colors.white,
-  marginBottom: "0.4rem",
-  padding: "0.4rem",
-  textAlign: "center",
-  borderRadius: "0.4rem",
-  boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.28)",
-  display: "grid",
-  textDecoration: "none",
-
-  [mediaQuery.desktop]: {
-    minWidth: "10rem",
-  },
-
-  "&:hover": {
-    fontWeight: "bold",
-    color: colors.black,
-  },
 });
