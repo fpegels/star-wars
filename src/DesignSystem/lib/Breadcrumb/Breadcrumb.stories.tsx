@@ -1,5 +1,4 @@
 import { Breadcrumb } from ".";
-import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { BrowserRouter } from "react-router-dom";
 
@@ -20,7 +19,7 @@ const links = [
   {
     url: "/planets/1/",
     id: "1",
-    name: "Planet",
+    name: "Homeworld",
   },
 ];
 

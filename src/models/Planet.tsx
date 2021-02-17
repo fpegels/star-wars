@@ -17,5 +17,4 @@ export const Planet = types.model("Planet", {
   url: types.optional(types.string, ""),
 });
 
-//@ts-nocheck
 export type PlanetType = Instance<typeof Planet>;

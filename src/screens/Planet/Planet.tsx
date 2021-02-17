@@ -75,14 +75,18 @@ export function Planet({ planetId }: PlanetProps) {
             </DataRow>
             <ResidentsContainer>
               <small>List of residents</small>
-              {planet.residents.map((resident, index) => (
-                <Resident
-                  key={resident}
-                  to={`/resident/${resident.split("/").slice(-2, -1)}`}
-                >
-                  Resident {index}
-                </Resident>
-              ))}
+              {planet.residents.length > 0 ? (
+                planet.residents.map((resident, index) => (
+                  <Resident
+                    key={resident}
+                    to={`/resident/${resident.split("/").slice(-2, -1)}`}
+                  >
+                    Resident {index}
+                  </Resident>
+                ))
+              ) : (
+                <div>No Residents</div>
+              )}
             </ResidentsContainer>
           </Container>
         </Fragment>

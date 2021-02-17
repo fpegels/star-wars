@@ -12,7 +12,7 @@ type Props = {
 
 export function Paginator({ totalPages, currentPage, onPageChange }: Props) {
   const { isDesktop } = useScreenSize();
-  const maxPages = isDesktop ? 11 : 5;
+  const maxPages = isDesktop ? 5 : 2;
   let startPage = 1;
   let endPage = totalPages;
 

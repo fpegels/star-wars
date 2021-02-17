@@ -48,6 +48,5 @@ export const PlanetsStore = types
     }),
   }));
 
-//@ts-nocheck
 export type PlanetsStoreType = Instance<typeof PlanetsStore>;
 export const planetsStore = PlanetsStore.create();

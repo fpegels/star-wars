@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
-import { usePlanetsStore } from "../../hooks/useFetchPlanets";
+import { usePlanetsStore } from "../../hooks/usePlanets";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { Paginator } from "../../DesignSystem/lib";
 import { PlanetType } from "../../models/Planet";
-import { colors, mediaQuery } from "../../DesignSystem/lib/_theme";
+import {
+  colors,
+  mediaQuery,
+  useScreenSize,
+} from "../../DesignSystem/lib/_theme";
 
 export const Planets = observer(function Planets() {
   const [filterStr, setFilterStr] = useState("");
@@ -15,8 +19,9 @@ export const Planets = observer(function Planets() {
   const [_planets, _setPlanets] = useState<PlanetType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const { isDesktop } = useScreenSize();
 
-  const MAX_PER_PAGE = 10;
+  const MAX_PER_PAGE = isDesktop ? 10 : 5;
 
   useEffect(() => {
     const filteredAll = filteredPlanets(filterStr);
@@ -29,7 +34,7 @@ export const Planets = observer(function Planets() {
     );
 
     _setPlanets(filteredAllperPage);
-  }, [filteredPlanets, filterStr, currentPage]);
+  }, [filteredPlanets, filterStr, currentPage, MAX_PER_PAGE]);
 
   useEffect(() => {
     setCurrentPage(1);

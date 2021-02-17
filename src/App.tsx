@@ -2,7 +2,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import { usePlanetsStore } from "./hooks/useFetchPlanets";
+import { usePlanetsStore } from "./hooks/usePlanets";
 import { Planets, Planet, Resident } from "./screens";
 
 function App() {

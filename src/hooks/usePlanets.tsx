@@ -13,10 +13,10 @@ export function PlanetsProvider({ children }: { children: React.ReactNode }) {
 }
 
 export const usePlanetsStore = () => {
-  const productsStore = useContext(DataStateContext);
-  if (!productsStore) {
-    // this is especially useful in TypeScript so you don't need to be checking for null all the time
-    throw new Error("You have forgot to use StoreProvider, shame on you.");
+  const planetsStore = useContext(DataStateContext);
+  if (!planetsStore) {
+    // this is useful to avoid checking for null planets provider every time
+    throw new Error("You need to add a Planets provider");
   }
-  return productsStore;
+  return planetsStore;
 };
