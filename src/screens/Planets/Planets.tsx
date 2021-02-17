@@ -39,14 +39,13 @@ export const Planets = observer(function Planets() {
     <Grid>
       <Container>
         <div>
-          <h1 style={{ marginTop: 0, color: colors.blueDark }}>Planets</h1>
+          <Title>Planets</Title>
           <input
             onChange={onChangeHandler}
             value={filterStr}
             placeholder="Find a Planet..."
           ></input>
         </div>
-
         <div>
           {_planets?.map((planet) => (
             <div key={planet.url}>
@@ -56,8 +55,8 @@ export const Planets = observer(function Planets() {
             </div>
           ))}
         </div>
-        {totalPages > 1 ? (
-          <PaginatorContainer>
+        <PaginatorContainer>
+          {totalPages > 1 && (
             <Paginator
               totalPages={totalPages}
               currentPage={currentPage}
@@ -65,10 +64,8 @@ export const Planets = observer(function Planets() {
                 setCurrentPage(nbr);
               }}
             />
-          </PaginatorContainer>
-        ) : (
-          <div></div>
-        )}
+          )}
+        </PaginatorContainer>
       </Container>
     </Grid>
   );
@@ -113,6 +110,11 @@ const Container = styled.div({
     justifyContent: "space-between",
     alignItems: "center",
   },
+});
+
+const Title = styled.h1({
+  marginTop: 0,
+  color: colors.blueDark,
 });
 
 const PaginatorContainer = styled.div({

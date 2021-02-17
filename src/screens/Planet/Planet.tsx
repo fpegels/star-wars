@@ -33,11 +33,11 @@ export function Planet({ planetId }: PlanetProps) {
   useEffect(() => {
     api.planets
       .get(planetId)
-      .then((res) => {
-        setPlanet(res);
+      .then((planet) => {
+        setPlanet(planet);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       })
       .finally(() => setIsLoading(false));
   }, [planetId]);
@@ -50,40 +50,40 @@ export function Planet({ planetId }: PlanetProps) {
         </SpinnerContainer>
       ) : (
         <Fragment>
-          <div style={{ position: "absolute" }}>
+          <BreadcrumbContainer>
             <Breadcrumb
               links={[{ id: "1", name: "Planets", url: "/planets/" }]}
             />
-          </div>
+          </BreadcrumbContainer>
 
           <Container>
-            <div style={{ fontWeight: "bold" }}>
+            <DataRow style={{ fontWeight: "bold" }}>
               <small>Planet</small>
               <div>{planet.name}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Terrain Type</small>
               <div>{planet.terrain}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Climate Type</small>
               <div>{planet.climate}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Gravity</small>
               <div>{planet.gravity}</div>
-            </div>
-
-            <div style={{ overflow: "auto" }}>
+            </DataRow>
+            <ResidentsContainer>
               <small>List of residents</small>
               {planet.residents.map((resident, index) => (
-                <div key={resident}>
-                  <Link to={`/resident/${resident.split("/").slice(-2, -1)}`}>
-                    Resident {index}
-                  </Link>
-                </div>
+                <Resident
+                  key={resident}
+                  to={`/resident/${resident.split("/").slice(-2, -1)}`}
+                >
+                  Resident {index}
+                </Resident>
               ))}
-            </div>
+            </ResidentsContainer>
           </Container>
         </Fragment>
       )}
@@ -135,3 +135,11 @@ const SpinnerContainer = styled.div({
   position: "absolute",
   fontSize: "6.4rem",
 });
+
+const BreadcrumbContainer = styled.div({ position: "absolute" });
+
+const DataRow = styled.div({});
+
+const ResidentsContainer = styled.div({});
+
+const Resident = styled(Link)({ display: "block" });

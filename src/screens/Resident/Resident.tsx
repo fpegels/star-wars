@@ -31,17 +31,25 @@ export function Resident({ residentId }: PlanetProps) {
     url: "",
   });
 
+  const breadcrumbLinks = [
+    { id: "1", name: "Planets", url: "/planets/" },
+    {
+      id: "2",
+      name: "Homeworld",
+      url: `/planet/${resident.homeworld.split("/").slice(-2, -1)}`,
+    },
+  ];
+
   useEffect(() => {
     api.residents
       .get(residentId)
-      .then((res) => {
-        setIsLoading(false);
-        setResident(res);
+      .then((resident) => {
+        setResident(resident);
       })
-      .catch((err) => {
-        console.error(err);
-        setIsLoading(false);
-      });
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => setIsLoading(false));
   }, [residentId]);
 
   return (
@@ -52,45 +60,35 @@ export function Resident({ residentId }: PlanetProps) {
         </SpinnerContainer>
       ) : (
         <Fragment>
-          <div style={{ position: "absolute" }}>
-            <Breadcrumb
-              links={[
-                { id: "1", name: "Planets", url: "/planets/" },
-                {
-                  id: "2",
-                  name: "Homeworld",
-                  url: `/planet/${resident.homeworld.split("/").slice(-2, -1)}`,
-                },
-              ]}
-            />
-          </div>
+          <BreadcrumbContainer>
+            <Breadcrumb links={breadcrumbLinks} />
+          </BreadcrumbContainer>
 
           <Container>
-            {console.log("resident", resident)}
-            <div style={{ fontWeight: "bold" }}>
+            <DataRow style={{ fontWeight: "bold" }}>
               <small>Resident</small>
               <div>{resident.name}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Mass</small>
               <div>{resident.mass}kg</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Gender</small>
               <div>{resident.gender}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Eye Color</small>
               <div>{resident.eyeColor}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Hair Color</small>
               <div>{resident.hairColor}</div>
-            </div>
-            <div>
+            </DataRow>
+            <DataRow>
               <small>Skin Color</small>
               <div>{resident.skinColor}</div>
-            </div>
+            </DataRow>
           </Container>
         </Fragment>
       )}
@@ -142,3 +140,7 @@ const SpinnerContainer = styled.div({
   position: "absolute",
   fontSize: "6.4rem",
 });
+
+const BreadcrumbContainer = styled.div({ position: "absolute" });
+
+const DataRow = styled.div({});

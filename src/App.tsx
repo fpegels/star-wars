@@ -12,12 +12,12 @@ function App() {
 
   useEffect(() => {
     fetchPlanets(
-      () => setIsLoading(false),
+      () => {},
       (error) => {
-        setIsLoading(false);
         setError(error);
         console.error(error);
-      }
+      },
+      () => setIsLoading(false)
     );
   }, [fetchPlanets]);
 

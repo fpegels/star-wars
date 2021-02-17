@@ -21,7 +21,8 @@ export const PlanetsStore = types
   .actions((self) => ({
     fetchPlanets: flow(function* fetch(
       successCallback?: () => void,
-      callbackError?: (value: string) => void
+      callbackError?: (value: string) => void,
+      callback?: () => void
     ) {
       self.planets.clear();
       try {
@@ -41,6 +42,8 @@ export const PlanetsStore = types
         if (successCallback) successCallback();
       } catch (error) {
         if (callbackError != null) callbackError(String(error));
+      } finally {
+        if (callback != null) callback();
       }
     }),
   }));
