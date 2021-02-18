@@ -9,10 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+-
+
+### Changed
+
+-
+
 # [0.01.0] - 2021-02-18
 
 ### Added
 
+- Edited `README.md` with general App information. @fpegels
+- Added `node-sass` library and replaced App.css with App.scss. @fpegels
 - Changelog `CHANGELOG.md`. @fpegels
 - Component `Breadcrumb` in screens. @fpegels
 - Component `Breadcrumb`. Adjusted components styles. @fpegels
