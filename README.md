@@ -18,3 +18,7 @@ This is a [React app](https://reactjs.org/) that uses the [Star Wars API](https:
 - [Sass](https://sass-lang.com/) was used for some global styling.
 - [Emotion](https://emotion.sh/docs/introduction) was used as CSS-in-JS library to style components and screens.
 - [Typescript](https://www.typescriptlang.org/) was used to extend JavaScript by adding types.
+
+## Some other
+
+- The App has a different layout in mobile and in desktop using media queries. Check it out!
